@@ -1,8 +1,10 @@
-function App(): React.JSX.Element {
-
+import Result from './components/Result'
+import Search from './components/Search'
+function App() {
   return (
     <>
-      <div className='bg-red-300'>abc</div>
+      <Search />
+      <Result />
     </>
   )
 }

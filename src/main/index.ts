@@ -6,15 +6,17 @@ import icon from '../../resources/icon.png?asset'
 function createWindow(): void {
   // Create the browser window.
 
-  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+  // const { width } = screen.getPrimaryDisplay().workAreaSize
 
   const mainWindow = new BrowserWindow({
-    width: 500,
-    height: 500,
-    x: width - 500,
-    y: 50,
+    width: 600,
+    height: 400,
+    x: 0,
+    y: 0,
     alwaysOnTop: true,
     show: false,
+    transparent: true, // 设置透明度
+    frame: false, // 关闭顶部菜单栏
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
