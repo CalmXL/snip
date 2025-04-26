@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
+import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -11,8 +11,6 @@ function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 600,
     height: 400,
-    x: 0,
-    y: 0,
     alwaysOnTop: true,
     show: false,
     transparent: true, // 设置透明度
