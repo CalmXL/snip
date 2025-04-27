@@ -6,6 +6,20 @@ export default () => {
   // const [currentIndex, setCurrentIndex] = useState(0)
   const [id, setId] = useState(0)
 
+  const selectItem = useCallback(
+    (id: number) => {
+      console.log(id)
+
+      const content = data.find((item) => item.id == id)?.content
+      if (content) {
+        // 调用剪切板并写入数据
+        navigator.clipboard.writeText(content)
+        window.api.hideWindow()
+      }
+    },
+    [data]
+  )
+
   const handleKeyEvent = useCallback(
     (e: KeyboardEvent) => {
       if (data.length === 0) return
@@ -23,16 +37,12 @@ export default () => {
           })
           break
         case 'Enter': {
-          const content = data.find((item) => item.id == id)?.content
-          if (content) {
-            // 调用剪切板并写入数据
-            navigator.clipboard.writeText(content)
-          }
+          selectItem(id)
           break
         }
       }
     },
-    [data, id]
+    [data, id, selectItem]
   )
 
   useEffect(() => {
@@ -49,6 +59,7 @@ export default () => {
 
   return {
     data,
-    id
+    id,
+    selectItem
   }
 }
