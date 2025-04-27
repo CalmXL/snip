@@ -5,7 +5,6 @@ import icon from '../../resources/icon.png?asset'
 
 function createWindow(): void {
   // Create the browser window.
-
   // const { width } = screen.getPrimaryDisplay().workAreaSize
 
   const mainWindow = new BrowserWindow({
