@@ -20,7 +20,7 @@ export default function Search() {
         <input
           value={search}
           onChange={handleSearch}
-          className="w-full outline-none text-xl text-slate-600"
+          className="w-full bg-slate-200 outline-none text-xl text-slate-600"
           type="text"
         />
       </section>

@@ -15,6 +15,10 @@ export default function Result() {
       case 'ArrowDown':
         setCurrentIndex((prev) => (prev + 1 >= data.length ? 0 : prev + 1))
         break
+      case 'Enter':
+        // 调用剪切板并写入数据
+        navigator.clipboard.writeText(data[currentIndex].content)
+        break
     }
   }
 
@@ -24,14 +28,18 @@ export default function Result() {
     return () => {
       document.removeEventListener('keydown', handleKeyEvent)
     }
-  }, [data])
+  }, [data, currentIndex])
 
   // ${currentIndex == index ? 'bg-orange-300' : ''}
   return (
     <main className={styles.main}>
-      {currentIndex}
       {data.map((item, index) => (
-        <div key={item.id}>{item.content}</div>
+        <div
+          className={`${styles.item} ${currentIndex == index ? styles.active : ''}`}
+          key={item.id}
+        >
+          {item.content}
+        </div>
       ))}
     </main>
   )

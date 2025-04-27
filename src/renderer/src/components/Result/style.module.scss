@@ -1,7 +1,11 @@
 .main {
   @apply bg-slate-100 px-3 pb-2 -mt-[10px] rounded-bl-xl rounded-br-xl;
 
-  // .item {
-  //   @apply text-slate-700 truncate mb-2;
-  // }
+  .item {
+    @apply text-slate-700 truncate mb-2;
+
+    &.active {
+      @apply bg-orange-400 text-white;
+    }
+  }
 }
