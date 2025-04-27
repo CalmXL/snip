@@ -2,7 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import './ipc'
+import { registerIpc } from './ipc'
 
 function createWindow(): void {
   // Create the browser window.
@@ -26,6 +26,9 @@ function createWindow(): void {
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
+
+  // 注册IPC
+  registerIpc(mainWindow)
 
   mainWindow.webContents.openDevTools()
 

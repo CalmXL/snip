@@ -1,8 +1,7 @@
-import { BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
+import { BrowserWindow, ipcMain } from 'electron'
 
-ipcMain.on('hideWindow', (event: IpcMainEvent) => {
-  const win = BrowserWindow.fromWebContents(event.sender)
-  if (win) {
+export const registerIpc = (win: BrowserWindow) => {
+  ipcMain.on('hideWindow', () => {
     win.hide()
-  }
-})
+  })
+}
