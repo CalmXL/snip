@@ -3,25 +3,36 @@ import { useCallback, useEffect, useState } from 'react'
 
 export default () => {
   const { data } = useCode()
-  const [currentIndex, setCurrentIndex] = useState(0)
+  // const [currentIndex, setCurrentIndex] = useState(0)
+  const [id, setId] = useState(0)
 
   const handleKeyEvent = useCallback(
     (e: KeyboardEvent) => {
       if (data.length === 0) return
       switch (e.code) {
         case 'ArrowUp':
-          setCurrentIndex((prev) => (prev - 1 <= 0 ? data.length - 1 : prev - 1))
+          setId((id) => {
+            const index = data.findIndex((item) => item.id == id)
+            return data[index - 1]?.id || data[data.length - 1].id
+          })
           break
         case 'ArrowDown':
-          setCurrentIndex((prev) => (prev + 1 >= data.length ? 0 : prev + 1))
+          setId((id) => {
+            const index = data.findIndex((item) => item.id == id)
+            return data[index + 1]?.id || data[0].id
+          })
           break
-        case 'Enter':
-          // 调用剪切板并写入数据
-          navigator.clipboard.writeText(data[currentIndex].content)
+        case 'Enter': {
+          const content = data.find((item) => item.id == id)?.content
+          if (content) {
+            // 调用剪切板并写入数据
+            navigator.clipboard.writeText(content)
+          }
           break
+        }
       }
     },
-    [data, currentIndex]
+    [data, id]
   )
 
   useEffect(() => {
@@ -33,11 +44,11 @@ export default () => {
   }, [handleKeyEvent])
 
   useEffect(() => {
-    setCurrentIndex(0)
+    setId(0)
   }, [data])
 
   return {
     data,
-    currentIndex
+    id
   }
 }
