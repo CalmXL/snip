@@ -1,11 +1,22 @@
 import useCode from '@renderer/hooks/useCode'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import styles from './style.module.scss'
 
+console.log(styles.main)
 export default function Result() {
   const { data } = useCode()
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const handleKeyEvent = (e: KeyboardEvent) => {
-    console.log(data.length)
+    if (data.length === 0) return
+    switch (e.code) {
+      case 'ArrowUp':
+        setCurrentIndex((prev) => (prev - 1 <= 0 ? data.length - 1 : prev - 1))
+        break
+      case 'ArrowDown':
+        setCurrentIndex((prev) => (prev + 1 >= data.length ? 0 : prev + 1))
+        break
+    }
   }
 
   useEffect(() => {
@@ -16,12 +27,12 @@ export default function Result() {
     }
   }, [data])
 
+  // ${currentIndex == index ? 'bg-orange-300' : ''}
   return (
-    <main className="bg-slate-50 px-3 pb-2 -mt-[10px] rounded-bl-xl rounded-br-xl">
-      {data.map((item) => (
-        <div key={item.id} className="text-slate-700 truncate mb-2">
-          {item.content}
-        </div>
+    <main className={styles.main}>
+      {currentIndex}
+      {data.map((item, index) => (
+        <div key={item.id}>{item.content}</div>
       ))}
     </main>
   )
