@@ -1,9 +1,11 @@
-import useCode from '@renderer/hooks/useCode'
+import { useStore } from '@renderer/store/useStore'
 import { useCallback, useEffect, useState } from 'react'
 
 export default () => {
-  const { data } = useCode()
-  // const [currentIndex, setCurrentIndex] = useState(0)
+  // const { data, setData } = useCode()
+  // const data = useStore((state) => state.data)
+  // const setData = useStore((state) => state.setData)
+  const { data, setData, setSearch } = useStore((state) => state)
   const [id, setId] = useState(0)
 
   const selectItem = useCallback(
@@ -14,10 +16,14 @@ export default () => {
       if (content) {
         // 调用剪切板并写入数据
         navigator.clipboard.writeText(content)
+        // 选择完毕后将数组清空
+        setData([])
+        // 选择完毕后清空search
+        setSearch('')
         window.api.hideWindow()
       }
     },
-    [data]
+    [data, setData, setSearch]
   )
 
   const handleKeyEvent = useCallback(

@@ -25,7 +25,8 @@
     "@electron-toolkit/utils": "^4.0.0",
     "classnames": "^2.5.1",
     "electron": "34",
-    "electron-updater": "^6.3.9"
+    "electron-updater": "^6.3.9",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^3.0.0",
