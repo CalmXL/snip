@@ -2,7 +2,6 @@ import useCode from '@renderer/hooks/useCode'
 import { useEffect, useState } from 'react'
 import styles from './style.module.scss'
 
-console.log(styles.main)
 export default function Result() {
   const { data } = useCode()
   const [currentIndex, setCurrentIndex] = useState(0)
