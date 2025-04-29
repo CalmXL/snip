@@ -1,7 +1,7 @@
 import styles from './style.module.scss'
-import useCodeSelect from '@renderer/hooks/useCodeSelect'
+import useSelect from '@renderer/hooks/useSelect'
 export default function Result() {
-  const { data, id, selectItem } = useCodeSelect()
+  const { data, id, selectItem } = useSelect()
   return (
     <main className={styles.main}>
       {data.map((item, index) => (

@@ -10,9 +10,11 @@ function App() {
   return (
     <>
       <CodeProvider>
-        <Error />
-        <Search />
-        <Result />
+        <main className='relative'>
+          <Error />
+          <Search />
+          <Result />
+        </main>
       </CodeProvider>
     </>
   )
