@@ -2,11 +2,13 @@ import { app, BrowserWindow } from 'electron'
 import { createWindow } from './window'
 import { registerIpc } from './ipc'
 import { registerShortCut } from './shortCut'
+import setIgnoreMouseEvents from './ignoreMouseEvent'
 
 app.whenReady().then(() => {
   const win = createWindow()
   registerIpc(win)
   registerShortCut(win)
+  setIgnoreMouseEvents(win)
 })
 
 app.on('activate', function () {

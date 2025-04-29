@@ -6,7 +6,7 @@ import useShortCut from './hooks/useShortCut'
 function App() {
   const { register } = useShortCut()
   register('CommandOrControl+Shift+]')
-
+  // window.api.setIgnoreMouseEvents(false)
   return (
     <>
       <CodeProvider>
