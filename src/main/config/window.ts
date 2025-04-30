@@ -2,6 +2,7 @@ import { BrowserWindow, shell } from 'electron'
 import { is } from '@electron-toolkit/utils'
 import { join } from 'path'
 import icon from '../../../resources/icon.png?asset'
+import url from 'node:url'
 
 export function createWindow(): BrowserWindow {
   // Create the browser window.
@@ -12,7 +13,7 @@ export function createWindow(): BrowserWindow {
     height: 500,
     alwaysOnTop: true,
     show: false,
-    frame: false, // 关闭顶部菜单栏
+    frame: true, // 关闭顶部菜单栏
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -23,6 +24,7 @@ export function createWindow(): BrowserWindow {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+
   })
 
   // 开启忽略点击事件
@@ -37,9 +39,18 @@ export function createWindow(): BrowserWindow {
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'] + '/#config')
   } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+    // mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+    mainWindow.loadURL(
+      url.format({
+        //
+        pathname: join(__dirname, '../renderer/index.html'),
+        protocol: 'file',
+        slashes: true,
+        hash: 'config'
+      })
+    )
   }
 
   return mainWindow

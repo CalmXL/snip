@@ -26,8 +26,8 @@
     "@icon-park/react": "^1.4.2",
     "antd": "^5.24.8",
     "classnames": "^2.5.1",
-    "electron": "34",
     "electron-updater": "^6.3.9",
+    "react-router": "^7.5.3",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
@@ -40,6 +40,7 @@
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.21",
+    "electron": "34",
     "electron-builder": "^25.1.8",
     "electron-vite": "^3.1.0",
     "eslint": "^9.24.0",

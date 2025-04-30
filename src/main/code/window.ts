@@ -13,8 +13,8 @@ export function createWindow(): BrowserWindow {
     alwaysOnTop: true,
     show: false,
     transparent: true, // 设置透明度
-    frame: true,
-    autoHideMenuBar: false,
+    frame: false,
+    autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
