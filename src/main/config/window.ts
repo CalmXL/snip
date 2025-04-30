@@ -8,13 +8,12 @@ export function createWindow(): BrowserWindow {
   // const { width } = screen.getPrimaryDisplay().workAreaSize
 
   const mainWindow = new BrowserWindow({
-    width: 600,
-    height: 400,
+    width: 800,
+    height: 500,
     alwaysOnTop: true,
     show: false,
-    transparent: true, // 设置透明度
-    frame: true,
-    autoHideMenuBar: false,
+    frame: false, // 关闭顶部菜单栏
+    autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),

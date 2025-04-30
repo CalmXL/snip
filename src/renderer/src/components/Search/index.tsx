@@ -1,7 +1,6 @@
 import { SettingOne } from '@icon-park/react'
 import useSearch from '@renderer/hooks/useSearch'
 import { Input } from 'antd'
-import { useEffect, useRef } from 'react'
 
 export default function Search() {
   const { search, handleSearch } = useSearch()
@@ -16,7 +15,7 @@ export default function Search() {
           strokeWidth={4}
           className="cursor-pointer"
           onClick={() => {
-            alert('配置页面')
+            window.api.openConfigWindow();
           }}
         />
         <Input
