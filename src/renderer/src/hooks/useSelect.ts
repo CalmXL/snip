@@ -6,8 +6,6 @@ export default () => {
 
   const selectItem = useCallback(
     (id: number) => {
-      console.log(id)
-
       const content = data.find((item) => item.id == id)?.content
       if (content) {
         // 调用剪切板并写入数据
@@ -23,11 +21,16 @@ export default () => {
   )
 
   useEffect(() => {
-    setId(0)
+    if (data.length > 0) {
+      console.log(data)
+      setId(data[0].id)
+    }
   }, [data])
 
   const handleKeyEvent = useCallback(
     (e: KeyboardEvent) => {
+      console.log(data)
+      console.log('id:', id)
       if (data.length === 0) return
       switch (e.code) {
         case 'ArrowUp': {
@@ -37,6 +40,7 @@ export default () => {
           break
         case 'ArrowDown': {
           const index = data.findIndex((item) => item.id == id)
+          console.log(index)
           setId(data[index + 1]?.id || data[0].id)
         }
           break
