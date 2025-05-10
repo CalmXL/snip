@@ -1,21 +1,21 @@
-import { db } from "../db/connect"
+import { db } from "./connect"
 
 export const findAll = (sql: string) => {
-  db.prepare(sql).all()
+  return db.prepare(sql).all()
 }
 
 export const findOne = (sql: string) => {
-  db.prepare(sql).get()
+  return db.prepare(sql).get()
 }
 
 export const insert = (sql: string) => {
-  db.prepare(sql).run().lastInsertRowid
+  return db.prepare(sql).run().lastInsertRowid
 }
 
 export const update = (sql: string) => {
-  db.prepare(sql).run().changes
+  return db.prepare(sql).run().changes
 }
 
 export const del = (sql: string) => {
-  db.prepare(sql).run().changes
+  return db.prepare(sql).run().changes
 }
