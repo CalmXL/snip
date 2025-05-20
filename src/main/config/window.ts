@@ -10,9 +10,9 @@ export function createWindow(): BrowserWindow {
 
   const mainWindow = new BrowserWindow({
     width: 800,
-    height: 500,
+    height: 550,
     alwaysOnTop: true,
-    show: false,
+    show: true,
     frame: true, // 关闭顶部菜单栏
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),

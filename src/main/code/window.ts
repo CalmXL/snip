@@ -29,7 +29,7 @@ export function createWindow(): BrowserWindow {
   // 开启忽略点击事件
   // mainWindow.setIgnoreMouseEvents(true, { forward: true })
   // 开启调试工具
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }

@@ -1,0 +1,21 @@
+.category-page {
+  @apply w-screen h-screen;
+  display: grid;
+  grid-template:
+    'categories content'
+    'nav content' 30px/100px auto;
+
+  .categories {
+    grid-area: categories;
+    @apply border-r border-gray-300 bg-slate-100 text-xs text-slate-700;
+  }
+
+  .nav {
+    grid-area: nav;
+    @apply border-r border-t border-gray-300 flex items-center justify-center gap-2;
+  }
+
+  .content {
+    grid-area: content;
+  }
+}

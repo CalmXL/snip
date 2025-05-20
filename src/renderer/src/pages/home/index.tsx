@@ -13,12 +13,13 @@ function Home() {
 
   useEffect(() => {
     setIgnoreMouseEvents(mainRef as RefObject<HTMLElement>)
+    window.api.openConfigWindow()
   }, [])
 
   return (
     <>
       <CodeProvider>
-        <main className='relative p-3' ref={mainRef}>
+        <main className="relative p-3" ref={mainRef}>
           <Error />
           <Search />
           <Result />
