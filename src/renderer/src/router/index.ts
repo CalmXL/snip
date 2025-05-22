@@ -4,6 +4,9 @@ import Config from "@renderer/pages/config";
 import Category from "@renderer/pages/category";
 import ContentList from "@renderer/pages/ContentList";
 import CategoryLoader from "@renderer/pages/category/CategoryLoader";
+import ContentListLoader from "@renderer/pages/ContentList/ContentListLoader";
+import Content from "@renderer/pages/Content";
+import ContentLoader from "@renderer/pages/Content/ContentLoader";
 
 const router = createHashRouter([
   {
@@ -21,7 +24,15 @@ const router = createHashRouter([
         children: [
           {
             path: 'contentList/:cid',
-            Component: ContentList
+            loader: ContentListLoader,
+            Component: ContentList,
+            children: [
+              {
+                path: 'content/:id',
+                loader: ContentLoader,
+                Component: Content
+              }
+            ]
           }
         ]
 

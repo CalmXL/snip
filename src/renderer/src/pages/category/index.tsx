@@ -1,9 +1,18 @@
-import { NavLink, Outlet, useLoaderData } from 'react-router'
+import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router'
 import './category.scss'
-import { Add, DatabaseSetting } from '@icon-park/react'
+import { Add, DatabaseSetting, FolderClose } from '@icon-park/react'
+import { useEffect } from 'react'
 
 export default function Category() {
   const categories = useLoaderData<CategoryType[]>()
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (categories.length) {
+      navigate(`/config/category/contentList/${categories[0].id}`)
+    }
+  }, [categories])
 
   return (
     <main className="category-page">
@@ -14,7 +23,10 @@ export default function Category() {
             key={category.id}
             to={`/config/category/contentList/${category.id}`}
           >
-            {category.name}
+            <div className='flex items-center gap-2'>
+              <FolderClose theme='outline' size='12' strokeWidth={3}/>
+              {category.name}
+            </div>
           </NavLink>
         ))}
       </div>
