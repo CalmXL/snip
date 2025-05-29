@@ -1,12 +1,11 @@
 .content-page {
+  @apply p-3 h-screen bg-slate-50 flex flex-col;
 
-  @apply p-3;
-
-  h1 {
-    @apply text-base font-bold text-slate-600 opacity-95;
+  input {
+    @apply text-lg font-bold text-slate-600 opacity-95 outline-none overflow-y-auto;
   }
 
-  .content {
-    @apply text-sm text-slate-500 opacity-95 leading-8;
+  textarea {
+    @apply flex-1 text-sm leading-6 border-t text-slate-500 opacity-90 outline-none;
   }
 }

@@ -2,7 +2,7 @@
   @apply h-screen;
   display: grid;
   grid-template:
-    'list content' auto/150px auto;
+    'list content' auto/200px auto;
 
   .list {
     @apply bg-slate-50 border-r border-gray-300 overflow-y-auto;

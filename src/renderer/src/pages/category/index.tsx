@@ -1,30 +1,31 @@
-import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router'
+import { NavLink, Outlet, useLoaderData, } from 'react-router'
 import './category.scss'
-import { Add, DatabaseSetting, FolderClose } from '@icon-park/react'
-import { useEffect } from 'react'
+import { Add, AllApplication, DatabaseSetting, FolderClose } from '@icon-park/react'
 
 export default function Category() {
   const categories = useLoaderData<CategoryType[]>()
 
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (categories.length) {
-      navigate(`/config/category/contentList/${categories[0].id}`)
-    }
-  }, [categories])
-
   return (
     <main className="category-page">
       <div className="categories">
+        <NavLink
+          to={`/config/category/contentList`}
+          end
+          className='font-bold'
+        >
+          <div className='flex items-center gap-2'>
+            <AllApplication theme='outline' size='12' strokeWidth={3} />
+            <div className='truncate'>全部片段</div>
+          </div>
+        </NavLink>
         {categories.map((category) => (
           <NavLink
-            className={({isActive}) => (isActive ? 'active' : '')}
+            className={({ isActive }) => (isActive ? 'active' : '')}
             key={category.id}
             to={`/config/category/contentList/${category.id}`}
           >
             <div className='flex items-center gap-2'>
-              <FolderClose theme='outline' size='12' strokeWidth={3}/>
+              <FolderClose theme='outline' size='12' strokeWidth={3} />
               {category.name}
             </div>
           </NavLink>

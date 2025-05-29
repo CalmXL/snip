@@ -1,5 +1,6 @@
 import { db } from './connect'
 import { Random } from 'mockjs';
+import { findOne } from './query';
 
 db.exec(`
   create table if not exists categories (
@@ -20,21 +21,28 @@ db.exec(`
   );
 `)
 
+initData()
+
+function initData() {
+  const isInit = findOne('select * from contents')
+  if (isInit) return
+
+  for (let i = 0; i < 10; i++) {
+    const name = Random.title(5, 10)
+    db.exec(`
+      INSERT INTO categories (name, created_at) VALUES('${name}', datetime())
+    `)
+
+    for (let j = 0; j < 10; j++) {
+
+      const title = Random.title(5, 10)
+      const content = Random.paragraph(5, 10)
+      db.exec(`
+        INSERT INTO contents (title, content, category_id, created_at) VALUES('${title}', '${content}', ${i}, datetime())
+      `)
+    }
+  }
+}
 
 
-// for (let i = 0; i < 10; i++) {
-//   const name = Random.title(5, 10)
-//   db.exec(`
-//     INSERT INTO categories (name, created_at) VALUES('${name}', datetime())
-//   `)
-
-//   for (let j = 0; j < 10; j++) {
-
-//     const title = Random.title(5, 10)
-//     const content = Random.paragraph(5, 10)
-//     db.exec(`
-//       INSERT INTO contents (title, content, category_id, created_at) VALUES('${title}', '${content}', ${i}, datetime())
-//     `)
-//   }
-// }
 
