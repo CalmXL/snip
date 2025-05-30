@@ -18,6 +18,16 @@ export default function Category() {
             <div className='truncate'>全部片段</div>
           </div>
         </NavLink>
+        <NavLink
+          to={`/config/category/contentList/0`}
+          end
+          className='font-bold'
+        >
+          <div className='flex items-center gap-2'>
+            <AllApplication theme='outline' size='12' strokeWidth={3} />
+            <div className='truncate'>未分类</div>
+          </div>
+        </NavLink>
         {categories.map((category) => (
           <NavLink
             className={({ isActive }) => (isActive ? 'active' : '')}
