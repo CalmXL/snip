@@ -8,9 +8,13 @@ export default function Content() {
   return (
     <Form method="PUT">
       <main className="content-page">
-        <input name="title" value={content.title} onChange={(e) => {
-          submit(e.target.form)
-        }} />
+        <input
+          name="title"
+          autoFocus
+          value={content.title}
+          onChange={(e) => {
+            submit(e.target.form)
+          }} />
         <textarea name="content" className="content" value={content.content} onChange={(e) => { submit(e.target.form) }} />
         <div className="border-t flex items-center justify-center mt-3">
           {/* <button>保存</button> */}
